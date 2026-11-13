@@ -110,7 +110,7 @@ document.addEventListener('focusout', e => { if (e.target.closest('.mention')) h
 document.addEventListener('click', e => {
   if (zoom.classList.contains('center')) { hideZoom(); return; }
   if (!TOUCH) return;
-  const t = e.target.closest('.ct,.mention,.sc');
+  const t = e.target.closest('.ct,.mention,.sc,tr[data-card]');
   if (!t) return;
   zoomFor = null; showZoom(t.dataset.card, 0, 0); zoom.classList.add('center'); zoom.style.transform = '';
 });
@@ -143,7 +143,18 @@ railLinks.forEach(a => a.addEventListener('click', closeRail));
 
 /* ---------- power plant (Tron calculator) ---------- */
 const PLANT = { mine: false, pp: false, tower: 0, lastTower: 1 };
-let shownTotal = 0, countRaf = 0;
+let shownTotal = 0, countRaf = 0, wasTron = false;
+(function gaugeTicks() {
+  const MAJ = { 0: '', 3: '', 7: 'TRON', 10: '', 13: '3 TOWERS' };
+  let h = '';
+  for (let v = 0; v <= 13; v++) {
+    const a = Math.PI * (1 - v / 13), c = Math.cos(a), s = Math.sin(a), maj = v in MAJ, r2 = maj ? 124 : 132;
+    const P = (r, dy = 0) => `x="${(170 + r * c).toFixed(1)}" y="${(170 - r * s + dy).toFixed(1)}"`;
+    h += `<line class="tk${maj ? ' maj' : ''}" x1="${(170 + 140 * c).toFixed(1)}" y1="${(170 - 140 * s).toFixed(1)}" x2="${(170 + r2 * c).toFixed(1)}" y2="${(170 - r2 * s).toFixed(1)}"/>`;
+    if (maj) h += `<text ${P(106, 5)}>${v}</text>` + (MAJ[v] ? `<text class="sub" ${v === 13 ? P(100, 22) : P(86, 4)}>${MAJ[v]}</text>` : '');
+  }
+  $('#gTicks').innerHTML = h;
+})();
 function tronMath() {
   const tron = PLANT.mine && PLANT.pp && PLANT.tower > 0;
   const m = PLANT.mine ? (tron ? 2 : 1) : 0, p = PLANT.pp ? (tron ? 2 : 1) : 0, t = PLANT.tower * (tron ? 3 : 1);
@@ -181,6 +192,12 @@ function renderPlant() {
   });
   $$('.towers button').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.t === PLANT.tower)));
   $('#meter').classList.toggle('cold', !any);
+  const g = Math.min(r.total, 13);
+  $('#gNeedle').style.transform = `rotate(${-90 + 180 * g / 13}deg)`;
+  $('#gFill').style.strokeDasharray = `${g} 13`;
+  $('#top').classList.toggle('tron', r.tron);
+  if (r.tron && !wasTron && !REDUCED) { const sp = $('#spark'); sp.classList.remove('strike'); sp.getBBox(); sp.classList.add('strike'); }
+  wasTron = r.tron;
   countTo(r.total);
   const parts = [PLANT.mine && r.m, PLANT.pp && r.p, ...Array(PLANT.tower).fill(r.tron ? 3 : 1)].filter(Boolean);
   $('#mEq').textContent = any ? parts.join(' + ') + (parts.length > 1 ? ' = ' + r.total : '') : 'no Urza lands';
@@ -246,7 +263,7 @@ const PIPS = [
   ['G', '[[Crop Rotation]], [[Moment\'s Peace]], [[Weather the Storm]], [[Pulse of Murasa]], [[Call Damage Control]] and [[Generous Ent]]. Forest and Tangled Islet tap for it.'],
   ['W', '[[Ephemerate]] and [[Stonehorn Dignitary]]. Filters only.'],
   ['B', '[[Cast Down]] and [[Mystical Teachings]]\' flashback. [[Bojuka Bog]] taps for it.'],
-  ['R', '[[Breath Weapon]] and [[Rolling Thunder]] ({R}{R}), plus Pyroblast, Ancient Grudge and Vandalblast after sideboarding. Filters only.']
+  ['R', '[[Breath Weapon]] and [[Rolling Thunder]] <span class="nw">({R}{R})</span>, plus Pyroblast, Ancient Grudge and Vandalblast after sideboarding. Filters only.']
 ];
 $('#pips').innerHTML = PIPS.map(([c, t]) => `<div>${ms('{' + c + '}')}<span>${rich(t)}</span></div>`).join('');
 
@@ -311,7 +328,7 @@ $('#shMull').onclick = () => { SH.mulls++; drawHand(false); };
 
 /* ---------- lines player ---------- */
 const LAYOUTS = {
-  wide: { w: 1180, h: 640, cw: 100, ch: 140, z: {
+  wide: { w: 1180, h: 672, cw: 100, ch: 140, z: {
     opp: { x: 0, y: 0, w: 1180, h: 52, kind: 'opp', label: 'Opponent' },
     lib: { x: 0, y: 80, w: 132, h: 172, kind: 'pile', label: 'Library' },
     gy: { x: 0, y: 280, w: 132, h: 360, kind: 'col', label: 'Graveyard' },
@@ -320,7 +337,7 @@ const LAYOUTS = {
     hand: { x: 156, y: 468, w: 840, h: 172, kind: 'row', label: 'Hand' },
     stack: { x: 1020, y: 80, w: 160, h: 360, kind: 'col', label: 'Stack' },
     ex: { x: 1020, y: 468, w: 160, h: 172, kind: 'fan', label: 'Exile' } } },
-  tall: { w: 600, h: 930, cw: 84, ch: 118, z: {
+  tall: { w: 600, h: 962, cw: 84, ch: 118, z: {
     opp: { x: 0, y: 0, w: 600, h: 48, kind: 'opp', label: 'Opponent' },
     bf: { x: 0, y: 74, w: 600, h: 150, kind: 'row', label: 'Battlefield' },
     lands: { x: 0, y: 248, w: 600, h: 136, kind: 'row', label: 'Lands', s: .86 },
@@ -415,7 +432,8 @@ function render(i, instant) {
   const ost = $('#ost'); if (ost) { ost.textContent = st.opp || ''; ost.classList.toggle('hot', !!st.opp); }
   $('#hud').innerHTML = scene.hud.map(([k, label]) => {
     const v = S.hud[k];
-    return `<div class="rd ${S.changed.includes(k) ? 'chg' : ''}"><span class="num">${v == null ? '–' : v}</span><span class="unit">${label}</span></div>`;
+    const bar = k === 'mana' ? `<span class="bar"><b style="width:${v === '∞' ? 100 : Math.min(100, (+v || 0) / scene.manaMax * 100)}%"></b></span>` : '';
+    return `<div class="rd ${S.changed.includes(k) ? 'chg' : ''}"><span class="num">${v == null ? '–' : v}</span><span class="unit">${label}</span>${bar}</div>`;
   }).join('');
   const plate = $('#plate'), kind = st.k || '';
   plate.className = 'plate ' + kind;
@@ -441,6 +459,7 @@ function go(i) { if (i < 0 || i >= states.length) return; setPlaying(false); ren
 function load(id, autoplay) {
   scene = SCENES.find(s => s.id === id) || SCENES[0];
   states = buildStates(scene);
+  scene.manaMax = Math.max(1, ...states.map(s => +s.hud.mana).filter(Number.isFinite));
   $$('.citem').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.id === scene.id)));
   $('#ctitle').textContent = scene.title;
   const TAGS = { owner: 'Owner', pb: 'PauperBrews', derived: 'Derived' };
@@ -523,13 +542,13 @@ function tabKeys(sel) {
 (function diff() {
   const delta = (a, b) => [...new Set([...Object.keys(a), ...Object.keys(b)])].map(n => [n, (a[n] || 0) - (b[n] || 0)]).filter(([, d]) => d);
   const dm = delta(MAIN, PB_MAIN), ds = delta(SIDE, PB_SIDE);
-  const col = (title, list, sign) => {
-    const tot = list.reduce((a, [, d]) => a + Math.abs(d), 0);
-    return `<div class="${sign}"><h3>${title}<span class="num">${sign === 'plus' ? '+' : minus}${tot}</span></h3><div class="cardgrid dense">${list.sort((a, b) => Math.abs(b[1]) - Math.abs(a[1])).map(([n, d]) => tile(n, { qty: Math.abs(d), sign, faded: sign === 'minus' && !MAIN[n] && !SIDE[n], note: NOTES[n] })).join('')}</div></div>`;
+  const block = (title, list) => {
+    const add = list.filter(([, d]) => d > 0).sort((a, b) => b[1] - a[1]), cut = list.filter(([, d]) => d < 0).sort((a, b) => a[1] - b[1]);
+    const row = ([n, d]) => `<tr class="${d < 0 ? 'cut' : 'add'}" data-card="${esc(n)}"><td class="d">${d > 0 ? '+' : minus}${Math.abs(d)}</td><td><span class="nm">${esc(n)}</span><span class="nt">${rich(NOTES[n] || '')}</span></td></tr>`;
+    const sum = a => a.reduce((t, [, d]) => t + Math.abs(d), 0);
+    return `<div><h3>${title}<span class="num">+${sum(add)}</span><span class="num cut">${minus}${sum(cut)}</span></h3><table class="rev"><tbody>${add.map(row).join('')}${cut.map(row).join('')}</tbody></table></div>`;
   };
-  $('#diff').innerHTML =
-    col('Main deck: added', dm.filter(([, d]) => d > 0), 'plus') + col('Main deck: cut', dm.filter(([, d]) => d < 0), 'minus') +
-    col('Sideboard: added', ds.filter(([, d]) => d > 0), 'plus') + col('Sideboard: cut', ds.filter(([, d]) => d < 0), 'minus');
+  $('#diff').innerHTML = block('Main deck', dm) + block('Sideboard', ds);
 })();
 
 /* ---------- sideboard ---------- */
@@ -560,7 +579,7 @@ function showMatchup(id) {
   $$('#mtabs button').forEach(b => { const on = b.dataset.id === id; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; });
   const n = Object.values(m.in).reduce((a, b) => a + b, 0);
   const grid = (o, sign) => `<div class="cardgrid">${Object.entries(o).map(([c, q]) => tile(c, { qty: q, sign, faded: sign === 'minus' })).join('')}</div>`;
-  $('#mu').innerHTML = `<div class="io"><div><h4>In</h4><div class="sum in"><span class="num">+${n}</span><span class="unit">cards</span></div>${grid(m.in, 'plus')}</div><div><h4>Out</h4><div class="sum out"><span class="num">${minus}${n}</span><span class="unit">cards</span></div>${grid(m.out, 'minus')}</div></div><div class="plan">${m.plan.map(p => `<p>${rich(p)}</p>`).join('')}</div>`;
+  $('#mu').innerHTML = `<div class="io"><div><h3 class="sum in">In <span class="num">+${n}</span></h3>${grid(m.in, 'plus')}</div><div><h3 class="sum out">Out <span class="num">${minus}${n}</span></h3>${grid(m.out, 'minus')}</div></div><div class="plan">${m.plan.map(p => `<p>${rich(p)}</p>`).join('')}</div>`;
 }
 $('#mtabs').innerHTML = MATCHUPS.map(m => `<button role="tab" data-id="${m.id}" aria-selected="false">${m.name}</button>`).join('');
 $$('#mtabs button').forEach(b => b.onclick = () => showMatchup(b.dataset.id));
@@ -574,11 +593,13 @@ const GROUPS = [['Creatures', /Creature/], ['Instants', /Instant/], ['Sorceries'
   const g = {}; GROUPS.forEach(([k]) => g[k] = []);
   for (const n of Object.keys(MAIN)) { const t = rec(n).type; const k = (GROUPS.find(([, re]) => re.test(t)) || GROUPS[4])[0]; g[k].push(n); }
   const byCmc = (a, b) => rec(a).cmc - rec(b).cmc || a.localeCompare(b);
-  const block = (title, names, counts) => {
-    const tot = names.reduce((a, n) => a + counts[n], 0);
-    return `<div class="dgroup"><h3>${title}<span class="num">${tot}</span></h3><div class="cardgrid dense">${names.sort(byCmc).map(n => tile(n, { qty: counts[n] })).join('')}</div></div>`;
-  };
-  $('#decklist').innerHTML = GROUPS.map(([k]) => block(k, g[k], MAIN)).join('') + block('Sideboard', Object.keys(SIDE), SIDE);
+  let no = 0;
+  const row = (n, q) => `<tr data-card="${esc(n)}"><td class="no">${String(++no).padStart(2, '0')}</td><td class="q">${q}</td><td class="p">${esc(n)}</td><td class="t">${esc(rec(n).type.split(' — ')[0])}</td><td class="c">${ms(rec(n).cost || '')}</td></tr>`;
+  const head = '<thead><tr><th class="no">No.</th><th>Qty</th><th>Part</th><th class="t">Type</th><th class="c"></th></tr></thead>';
+  const grp = (title, names, counts) => `<tr class="grp"><td colspan="5">${title}<span>${names.reduce((a, n) => a + counts[n], 0)}</span></td></tr>` + names.sort(byCmc).map(n => row(n, counts[n])).join('');
+  $('#decklist').innerHTML =
+    `<table class="parts"><caption>Main deck<span class="num">60</span></caption>${head}<tbody>${GROUPS.map(([k]) => grp(k, g[k], MAIN)).join('')}</tbody></table>` +
+    `<table class="parts"><caption>Sideboard<span class="num">15</span></caption>${head}<tbody>${Object.keys(SIDE).sort(byCmc).map(n => row(n, SIDE[n])).join('')}</tbody></table>`;
   const text = Object.entries(MAIN).map(([n, c]) => `${c} ${n}`).join('\n') + '\n\n' + Object.entries(SIDE).map(([n, c]) => `${c} ${n}`).join('\n') + '\n';
   $('#copyList').onclick = async () => {
     const msg = $('#copyMsg');
