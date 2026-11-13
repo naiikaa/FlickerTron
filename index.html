@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FlickerTron · visual Pauper primer</title>
+<meta name="description" content="Visual primer for the Pauper deck FlickerTron (Ephemerate / Teachings Tron): Tron mana, the Mnemonic Wall and Ghostly Flicker engine and the infinite, played out with the real cards.">
+<meta name="theme-color" content="#0b2341">
+<meta property="og:title" content="FlickerTron · visual Pauper primer">
+<meta property="og:description" content="Tron mana, the Wall + Ghostly Flicker engine and the infinite, played out step by step with the real cards.">
+<meta property="og:image" content="https://naiikaa.github.io/FlickerTron/assets/cards/art_crop-dc143ba3-2a58-4980-9fa0-a05a9e9ed082.jpg">
+<meta property="og:url" content="https://naiikaa.github.io/FlickerTron/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%230b2341'/%3E%3Cpath d='M32 10 54 50H10Z' fill='none' stroke='%23eef5ff' stroke-width='3'/%3E%3Ccircle cx='32' cy='10' r='6' fill='%23ffd447'/%3E%3Ccircle cx='54' cy='50' r='6' fill='%23ffd447'/%3E%3Ccircle cx='10' cy='50' r='6' fill='%23ffd447'/%3E%3C/svg%3E">
+<link href="assets/fonts/fonts.css" rel="stylesheet">
+<style>
+:root{
+  --ink-0:#071a31; --ink-1:#0b2341; --ink-2:#102d52; --ink-3:#1a3d6a; --ink-4:#2a5288;
+  --chalk:#eef5ff; --chalk-2:#b6cdea; --chalk-3:#8fadd3; --chalk-4:#5d7ea8;
+  --rule:rgba(208,228,255,.16); --rule-2:rgba(208,228,255,.34);
+  --grid-minor:rgba(150,195,255,.05); --grid-major:rgba(150,195,255,.095);
+  --volt:#ffd447; --volt-hot:#fff3bf; --volt-ink:#1b1404;
+  --red:#ff7b67;
+  --disp:'osifont','Archivo',sans-serif;
+  --body:'Archivo',system-ui,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --rail:248px;
+}
+*{box-sizing:border-box}
+html{background:var(--ink-1);color-scheme:dark;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font:400 17px/1.6 var(--body);color:var(--chalk);font-variant-numeric:tabular-nums;
+  background:
+    linear-gradient(var(--grid-major) 1px,transparent 1px) -1px -1px/120px 120px,
+    linear-gradient(90deg,var(--grid-major) 1px,transparent 1px) -1px -1px/120px 120px,
+    linear-gradient(var(--grid-minor) 1px,transparent 1px) -1px -1px/24px 24px,
+    linear-gradient(90deg,var(--grid-minor) 1px,transparent 1px) -1px -1px/24px 24px,
+    var(--ink-1)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;mix-blend-mode:screen;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .8 0 0 0 0 .9 0 0 0 0 1 0 0 0 1.4 -.4'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--volt);color:var(--volt-ink)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--ink-0)}
+::-webkit-scrollbar-thumb{background:var(--ink-4);border:3px solid var(--ink-0);border-radius:6px}
+::-webkit-scrollbar-thumb:hover{background:var(--chalk-4)}
+html{scrollbar-color:var(--ink-4) var(--ink-0)}
+:focus-visible{outline:2px solid var(--volt);outline-offset:3px}
+a{color:var(--chalk);text-decoration:underline;text-decoration-color:var(--rule-2);text-underline-offset:.22em;text-decoration-thickness:1px}
+a:hover{color:var(--volt-hot);text-decoration-color:var(--volt)}
+b,strong{font-weight:650;color:#fff}
+img{max-width:100%}
+.ms{width:1.02em;height:1.02em;vertical-align:-.16em;margin:0 .04em;border-radius:50%;box-shadow:0 1px 0 rgba(0,0,0,.45)}
+.skip{position:absolute;left:-999px;top:8px;z-index:99;background:var(--volt);color:var(--volt-ink);padding:10px 14px}
+.skip:focus{left:8px}
+svg.i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- rail ---------- */
+.rail{position:fixed;inset:0 auto 0 0;width:var(--rail);z-index:40;background:var(--ink-0);border-right:1px solid var(--rule);display:flex;flex-direction:column;padding:26px 0 22px;overflow-y:auto}
+.crest{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;padding:0 22px 22px;margin:0 0 18px;border-bottom:1px solid var(--rule);color:inherit;text-decoration:none}
+.crest svg{width:44px;height:44px}
+.crest b{display:block;font:400 24px/1 var(--disp);letter-spacing:.02em;text-transform:uppercase;color:var(--chalk)}
+.crest span{display:block;margin-top:5px;font:400 12px/1.2 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-3)}
+.rail nav{position:relative;flex:1;padding:4px 0}
+.rail .wire{position:absolute;left:33px;top:20px;bottom:20px;width:2px;background:var(--ink-3)}
+.rail .current{position:absolute;left:0;top:0;width:100%;height:100%;background:var(--volt);transform:scaleY(0);transform-origin:50% 0;transition:transform .5s var(--ease)}
+.rail ol{list-style:none;margin:0;padding:0;position:relative}
+.rail li a{display:grid;grid-template-columns:68px 1fr;align-items:center;min-height:44px;padding-right:16px;font:400 15px/1.15 var(--disp);letter-spacing:.07em;text-transform:uppercase;color:var(--chalk-3);text-decoration:none}
+.rail li a:hover{color:var(--chalk)}
+.lamp{justify-self:center;margin-left:-2px;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--chalk-4);background:var(--ink-0);transition:background .3s,border-color .3s,box-shadow .3s;position:relative}
+.done .lamp{background:var(--ink-0);border-color:var(--volt)}
+.done .lamp:after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--volt);opacity:.55}
+.on .lamp{background:var(--volt);border-color:var(--volt);box-shadow:0 2px 10px 1px rgba(255,212,71,.55)}
+.rail li.on a{color:var(--chalk)}
+.rail .foot{padding:18px 22px 0;margin-top:14px;border-top:1px solid var(--rule);display:grid;gap:10px;font-size:14px}
+.rail .foot a{display:flex;align-items:center;gap:8px;color:var(--chalk-2);text-decoration:none}
+.rail .foot a:hover{color:var(--volt-hot)}
+.rail .foot svg.i{width:15px;height:15px}
+.topbar{display:none}
+.scrim{display:none}
+
+/* ---------- layout ---------- */
+main{position:relative;z-index:1;margin-left:var(--rail)}
+.wrap{max-width:1220px;margin:0 auto;padding:0 clamp(20px,4vw,64px)}
+section{padding-top:124px;scroll-margin-top:0}
+section>.head{position:relative;padding-top:30px;margin-bottom:8px}
+section>.head:before{content:"";position:absolute;left:0;right:0;top:0;height:9px;border-top:1px solid var(--rule-2);
+  background:repeating-linear-gradient(90deg,var(--rule-2) 0 1px,transparent 1px 24px) 0 0/100% 5px no-repeat,repeating-linear-gradient(90deg,var(--rule-2) 0 1px,transparent 1px 120px) 0 0/100% 9px no-repeat}
+h1,h2,h3,h4{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin:0;text-wrap:balance}
+h2{font-size:clamp(38px,4.6vw,62px);line-height:.98;letter-spacing:.01em}
+h3{font-size:24px;line-height:1.08;letter-spacing:.03em}
+h4{font-size:14px;letter-spacing:.12em;color:var(--chalk-3)}
+.lede{max-width:68ch;color:var(--chalk-2);font-size:18px;margin:16px 0 0}
+.lede b{color:var(--chalk)}
+.num{font-family:var(--body);font-stretch:125%;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.unit{font:400 14px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-3);margin-left:8px}
+.mention{border-bottom:1px dotted var(--chalk-3);cursor:help;color:var(--chalk)}
+.mention:hover,.mention:focus-visible{color:var(--volt-hot);border-bottom-color:var(--volt)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:12px 20px;border-radius:2px;border:1px solid var(--rule-2);background:var(--ink-2);color:var(--chalk);font:400 15px/1 var(--disp);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .1s}
+.btn:hover{border-color:var(--volt);color:var(--volt-hot)}
+.btn:active{transform:translateY(1px)}
+.btn.live{background:var(--volt);border-color:var(--volt);color:var(--volt-ink)}
+.btn.live:hover{background:var(--volt-hot);color:var(--volt-ink)}
+.btn[disabled]{opacity:.35;cursor:not-allowed}
+.ibtn{width:46px;height:46px;padding:0;justify-content:center}
+
+/* cards */
+.ct{position:relative;margin:0;display:block}
+.ct>img{display:block;width:100%;height:auto;aspect-ratio:488/680;border-radius:4.6%/3.4%;background:var(--ink-2);box-shadow:0 10px 20px -10px rgba(0,0,0,.9);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.ct:hover>img{transform:translateY(-5px);box-shadow:0 22px 30px -14px rgba(0,0,0,.95),0 8px 16px -8px rgba(0,0,0,.9)}
+.ct .qty{position:absolute;left:-6px;top:22%;min-width:34px;padding:6px 7px 5px;text-align:center;background:var(--ink-0);border:1px solid var(--rule-2);border-radius:2px;font:400 15px/1 var(--disp);letter-spacing:.04em;color:var(--chalk);box-shadow:0 4px 10px -4px rgba(0,0,0,.8)}
+.ct .qty.plus{background:var(--volt);border-color:var(--volt);color:var(--volt-ink)}
+.ct .qty.minus{border-color:var(--red);color:var(--red)}
+.ct.faded>img{filter:grayscale(1) brightness(.62);opacity:.75}
+.ct figcaption{margin-top:12px;font-size:14px;line-height:1.45;color:var(--chalk-2)}
+.ct figcaption b{display:block;font:400 14px/1.2 var(--disp);letter-spacing:.07em;text-transform:uppercase;color:var(--chalk);margin-bottom:4px}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:34px 22px;margin-top:30px}
+.cardgrid.dense{grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:22px 16px}
+
+/* ---------- hero ---------- */
+.hero{min-height:min(100vh,940px);display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:clamp(28px,4vw,64px);align-items:center;padding:56px 0 40px}
+.hero h1{font-size:clamp(56px,7.6vw,96px);line-height:.9;letter-spacing:.015em}
+.hero h1 span{display:block;color:var(--volt)}
+.hero .lede{font-size:19px;margin-top:24px;max-width:46ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.tblock{margin-top:40px;display:grid;grid-template-columns:repeat(3,auto);border:1px solid var(--rule-2);max-width:520px}
+.tblock div{padding:9px 12px 8px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.tblock div:nth-child(3n){border-right:0}
+.tblock div:nth-last-child(-n+3){border-bottom:0}
+.tblock dt{font:400 11px/1 var(--disp);letter-spacing:.14em;text-transform:uppercase;color:var(--chalk-3)}
+.tblock dd{margin:5px 0 0;font-size:15px;line-height:1.25;color:var(--chalk)}
+
+.plant{position:relative;width:100%}
+.board{position:relative;width:100%;aspect-ratio:640/380}
+.board svg.wires{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.plant .w{fill:none;stroke:var(--chalk-4);stroke-width:2;stroke-dasharray:6 7;transition:stroke .4s}
+.plant .w.live{stroke:var(--volt);stroke-dasharray:none}
+.plant .flow{fill:none;stroke:var(--volt-hot);stroke-width:2.4;stroke-dasharray:3 17;opacity:0;transition:opacity .4s}
+.plant .flow.live{opacity:.95;animation:flow 1.1s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-40}}
+@media (prefers-reduced-motion:reduce){.plant .flow.live{animation:none}}
+.plant .node{fill:var(--ink-1);stroke:var(--chalk-4);stroke-width:2;transition:fill .4s,stroke .4s}
+.plant .node.live{fill:var(--volt);stroke:var(--volt)}
+.plant text{font-family:var(--disp);letter-spacing:.06em}
+.plant text.out{fill:var(--chalk-4);font-size:24px}
+.plant text.out.live{fill:var(--volt)}
+.land{position:absolute;top:6.8%;width:26%;padding:0;border:0;background:none;cursor:pointer;border-radius:4.6%/3.4%;color:inherit}
+.land img{display:block;width:100%;aspect-ratio:488/680;height:auto;border-radius:4.6%/3.4%;box-shadow:0 14px 24px -12px rgba(0,0,0,.95);transition:filter .45s,transform .45s var(--ease),opacity .45s;position:relative}
+.land.off img{filter:grayscale(1) brightness(.5);transform:translateY(8px)}
+.land:hover img:last-child{transform:translateY(-4px)}
+.land.off:hover img:last-child{transform:translateY(4px)}
+.land img.ghost{position:absolute;left:0;top:0;opacity:0;filter:brightness(.6)}
+.land[data-l=mine]{left:5%}.land[data-l=pp]{left:37%}.land[data-l=tower]{left:69%}
+.meter{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:14px}
+.meter .read{display:flex;align-items:baseline;gap:4px}
+.meter .read .num{font-size:clamp(64px,7.4vw,104px);line-height:.86;color:var(--volt);transition:color .3s}
+.meter.cold .read .num{color:var(--chalk-4)}
+.meter .eq{margin-top:12px;font:400 17px/1.2 var(--disp);letter-spacing:.08em;color:var(--chalk-2)}
+.towers{display:flex;align-items:center;gap:8px;margin-top:16px}
+.towers span{margin-right:6px;font:400 12px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;color:var(--chalk-3)}
+.towers button{min-width:46px;height:44px;border-radius:2px;border:1px solid var(--rule-2);background:var(--ink-1);color:var(--chalk-2);font:400 16px/1 var(--disp);cursor:pointer}
+.towers button:hover{border-color:var(--volt);color:var(--volt-hot)}
+.towers button[aria-pressed=true]{background:var(--volt);border-color:var(--volt);color:var(--volt-ink)}
+.meter .status{margin-top:14px;font-size:15.5px;color:var(--chalk-2);max-width:46ch;min-height:3em}
+.meter .status a{color:var(--volt-hot)}
+
+/* ---------- plan ---------- */
+.phases{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px;margin-top:56px}
+.phases:before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:linear-gradient(90deg,var(--chalk-4),var(--volt))}
+.phase{position:relative;padding-top:38px}
+.phase:before{content:"";position:absolute;left:0;top:0;width:16px;height:16px;border-radius:50%;background:var(--ink-1);border:2px solid var(--chalk-3)}
+.phase:last-child:before{background:var(--volt);border-color:var(--volt)}
+.phase h3 small{display:block;margin-top:6px;font-size:13px;letter-spacing:.12em;color:var(--chalk-3)}
+.fan{position:relative;height:170px;margin:22px 0 18px}
+.fan .ct{position:absolute;left:0;top:0;width:104px;transform-origin:50% 120%}
+.fan .ct img{box-shadow:0 10px 18px -8px rgba(0,0,0,.95)}
+.phase p{margin:0;font-size:16px;color:var(--chalk-2)}
+.tips{margin-top:72px;display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px 56px}
+.tips ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.tips li{display:grid;grid-template-columns:24px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--rule);color:var(--chalk-2)}
+.tips li svg{margin-top:4px;color:var(--volt)}
+.tips .src{display:block;margin-top:14px;font-size:14px;color:var(--chalk-3)}
+
+/* ---------- tron ---------- */
+.finders{margin-top:40px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px}
+.frow{display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:start;padding:22px 0;border-top:1px solid var(--rule)}
+.frow .ct img{box-shadow:0 8px 16px -8px rgba(0,0,0,.95)}
+.frow h3{font-size:19px}
+.frow .ann{position:relative;padding-left:22px;margin-top:10px;color:var(--chalk-2);font-size:15.5px}
+.frow .ann:before{content:"";position:absolute;left:0;top:.75em;width:14px;height:1px;background:var(--chalk-3)}
+.frow .ann:after{content:"";position:absolute;left:-3px;top:calc(.75em - 3px);width:7px;height:7px;border-radius:50%;background:var(--chalk-3)}
+.frow .cost{font:400 13px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--volt);margin-top:6px}
+.colour{margin-top:76px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
+table.spec{width:100%;border-collapse:collapse;margin-top:18px;font-size:15.5px}
+.spec th{text-align:left;font:400 12px/1.2 var(--disp);letter-spacing:.12em;text-transform:uppercase;color:var(--chalk-3);padding:0 12px 10px 0;border-bottom:1px solid var(--rule-2)}
+.spec td{padding:12px 12px 12px 0;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--chalk-2)}
+.spec td:first-child{color:var(--chalk);white-space:nowrap}
+.spec td.n{font-stretch:125%;font-weight:700;color:var(--chalk)}
+.pips{display:grid;gap:0;margin-top:18px;border-top:1px solid var(--rule)}
+.pips div{display:grid;grid-template-columns:42px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:15.5px;color:var(--chalk-2);align-items:start}
+.pips .ms{width:26px;height:26px;margin:0}
+
+/* ---------- sample hand ---------- */
+.hbar{display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px;margin-top:34px;padding-top:22px;border-top:1px solid var(--rule)}
+.hbar .btns{display:flex;gap:10px}
+.lamps{display:flex;gap:16px}
+.lamps span{display:flex;align-items:center;gap:8px;font:400 13px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-3)}
+.lamps i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--chalk-4);transition:background .3s,border-color .3s,box-shadow .3s}
+.lamps .lit{color:var(--chalk)}
+.lamps .lit i{background:var(--volt);border-color:var(--volt);box-shadow:0 2px 8px rgba(255,212,71,.55)}
+.tally{display:flex;gap:26px}
+.tally div{display:flex;align-items:baseline}
+.tally .num{font-size:34px;line-height:1;color:var(--chalk-3)}
+.tally .ok .num{color:var(--volt)}
+.verdict{flex-basis:100%;display:flex;align-items:flex-start;gap:12px;font-size:17px;color:var(--chalk-2)}
+.verdict svg{flex:none;margin-top:3px;color:var(--chalk-4)}
+.verdict.keep svg{color:var(--volt)}
+.verdict.mull svg{color:var(--red)}
+.verdict b{font:400 17px/1.3 var(--disp);letter-spacing:.06em;text-transform:uppercase;color:var(--chalk)}
+.hand{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:14px;margin-top:26px}
+.hand .slot{position:relative;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:default}
+.hand .slot.pick{cursor:pointer}
+.hand .slot img{display:block;width:100%;height:auto;aspect-ratio:488/680;border-radius:4.6%/3.4%;box-shadow:0 10px 20px -10px rgba(0,0,0,.95)}
+.hand .slot .back{width:100%;aspect-ratio:488/680}
+.hand .slot.bottomed img{filter:grayscale(1) brightness(.45);transform:translateY(14px)}
+.hand .slot.deal img{animation:deal .55s var(--ease) both}
+@keyframes deal{from{opacity:0;transform:translateY(-26px) rotate(-3deg)}}
+@media (prefers-reduced-motion:reduce){.hand .slot.deal img{animation:none}}
+.hand .role{display:flex;align-items:center;gap:7px;min-height:18px;margin-top:10px;font:400 12px/1.2 var(--disp);letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-3)}
+.hand .role.tron{color:var(--volt)}
+.hand .role.bottom{color:var(--red)}
+.odds{margin-top:30px;max-width:70ch;font-size:15.5px;color:var(--chalk-3)}
+.back{border-radius:4.6%/3.4%;border:3px solid var(--ink-0);box-shadow:0 10px 20px -10px rgba(0,0,0,.95);
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'%3E%3Cg fill='none' stroke='%238fadd3' stroke-width='.7'%3E%3Crect x='7' y='7' width='86' height='126' rx='3'/%3E%3Ccircle cx='50' cy='70' r='26'/%3E%3Cpath d='M50 47 70 82H30Z'/%3E%3Cpath d='M7 70H24M76 70H93M50 7V44M50 96V133' stroke-dasharray='2 2'/%3E%3C/g%3E%3Cg fill='%23ffd447'%3E%3Ccircle cx='50' cy='47' r='2.4'/%3E%3Ccircle cx='70' cy='82' r='2.4'/%3E%3Ccircle cx='30' cy='82' r='2.4'/%3E%3C/g%3E%3C/svg%3E") center/100% 100% no-repeat,var(--ink-2)}
+
+/* ---------- lines ---------- */
+.pick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:38px}
+.grp h3{font-size:14px;letter-spacing:.14em;color:var(--chalk-3);padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.citem{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center;width:100%;padding:12px 6px 12px 0;border:0;border-bottom:1px solid var(--rule);background:none;color:inherit;text-align:left;cursor:pointer;font:inherit}
+.citem .thumbs{display:flex}
+.citem .thumbs img{width:34px;height:34px;object-fit:cover;border-radius:50%;border:2px solid var(--ink-1);margin-left:-10px}
+.citem .thumbs img:first-child{margin-left:0}
+.citem .tt{display:block;font:400 16px/1.15 var(--disp);letter-spacing:.05em;text-transform:uppercase;color:var(--chalk-2)}
+.citem .st{display:block;margin-top:4px;font-size:13.5px;line-height:1.35;color:var(--chalk-3)}
+.citem:hover .tt{color:var(--chalk)}
+.citem[aria-pressed=true] .tt{color:var(--volt)}
+.citem[aria-pressed=true] .thumbs img{border-color:var(--volt)}
+.chead{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:62px}
+.chead h3{font-size:clamp(30px,3.4vw,44px);line-height:1}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;padding:5px 9px 4px;border-radius:2px;font:400 12px/1.1 var(--disp);letter-spacing:.12em;text-transform:uppercase;vertical-align:.1em}
+.tag.owner{background:var(--volt);color:var(--volt-ink)}
+.tag.pb{border:1px solid var(--chalk-2);color:var(--chalk)}
+.tag.derived{border:1px dashed var(--chalk-3);color:var(--chalk-3)}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px;margin-top:24px}
+.facts h4{margin-bottom:8px}
+.facts ul{margin:0;padding:0;list-style:none}
+.facts li{position:relative;padding-left:18px;margin:5px 0;font-size:15.5px;color:var(--chalk-2)}
+.facts li:before{content:"";position:absolute;left:0;top:.62em;width:8px;height:1px;background:var(--chalk-3)}
+.facts p{margin:0;font-size:15.5px;color:var(--chalk-2)}
+.hud{display:flex;flex-wrap:wrap;gap:6px 34px;margin-top:34px;padding:14px 0 12px;border-top:1px solid var(--rule-2);border-bottom:1px solid var(--rule)}
+.rd{display:flex;align-items:baseline}
+.rd .num{font-size:30px;line-height:1;color:var(--chalk);transition:color .25s}
+.rd.chg .num{color:var(--volt)}
+.stage-wrap{position:relative;margin-top:28px;overflow:hidden}
+.stage-wrap .stage{top:12px}
+.zn.idle{visibility:hidden}
+.stage{position:absolute;left:0;top:0;transform-origin:0 0;--spd:1}
+.zn{position:absolute;border:1px dashed var(--rule-2);border-radius:3px}
+.zn>b{position:absolute;top:-9px;left:10px;padding:0 7px;background:var(--ink-1);font:400 12px/18px var(--disp);font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--chalk-3)}
+.zn.opp{border-style:solid;border-color:rgba(255,123,103,.4)}
+.zn.opp>b{color:var(--red)}
+.zn.opp .ost{position:absolute;left:120px;top:50%;transform:translateY(-50%);font:400 15px/1 var(--disp);letter-spacing:.08em;text-transform:uppercase;color:var(--chalk-2)}
+.zn.opp .ost.hot{color:var(--red)}
+.sc{position:absolute;left:0;top:0;transition:transform calc(.62s / var(--spd)) var(--ease),opacity calc(.4s / var(--spd));will-change:transform}
+.sc .face{width:100%;height:100%;transition:transform calc(.5s / var(--spd)) var(--ease)}
+.sc.tap .face{transform:rotate(90deg)}
+.sc img{display:block;width:100%;height:100%;border-radius:4.6%/3.4%;box-shadow:0 8px 16px -8px rgba(0,0,0,.9)}
+.sc .back{position:absolute;inset:0;display:none}
+.sc.down .back{display:block}
+.sc.down img{visibility:hidden}
+.sc.hot img{outline:2px solid var(--volt);outline-offset:2px;box-shadow:0 12px 26px -6px rgba(255,212,71,.6)}
+.sc.opp img{outline:2px solid var(--red);outline-offset:2px}
+.sc .bdg{position:absolute;left:50%;bottom:-12px;transform:translateX(-50%);white-space:nowrap;padding:5px 8px 4px;border-radius:2px;background:var(--volt);color:var(--volt-ink);font:400 13px/1 var(--disp);letter-spacing:.06em;text-transform:uppercase;opacity:0;transition:opacity .25s;z-index:2;pointer-events:none}
+.sc .bdg.show{opacity:1}
+.sc.opp .bdg{background:var(--red);color:#2a0905}
+.cap{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;margin-top:30px;min-height:84px}
+.plate{min-width:92px;padding:9px 12px 8px;border-radius:2px;background:var(--volt);color:var(--volt-ink);font:400 14px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;text-align:center}
+.plate.setup{background:var(--ink-3);color:var(--chalk)}
+.plate.loop{background:none;border:1px dashed var(--volt);color:var(--volt)}
+.plate.final{background:var(--volt-hot)}
+.cap p{margin:0;font-size:18px;line-height:1.5;color:var(--chalk);max-width:75ch}
+.ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:12px 10px;margin-top:22px}
+.ctrl select{height:46px;padding:0 12px;border-radius:2px;border:1px solid var(--rule-2);background:var(--ink-2);color:var(--chalk);font:400 14px var(--disp);letter-spacing:.08em}
+.ticks{display:flex;flex:1;min-width:220px;gap:5px;margin-left:10px}
+.ticks button{flex:1;height:30px;padding:0;border:0;background:none;cursor:pointer;position:relative}
+.ticks button:before{content:"";position:absolute;left:0;right:0;top:13px;height:4px;border-radius:1px;background:var(--ink-3);transition:background .25s,box-shadow .25s}
+.ticks button.loop:before{background:repeating-linear-gradient(90deg,var(--chalk-4) 0 4px,transparent 4px 7px)}
+.ticks button.done:before{background:var(--chalk-3)}
+.ticks button.now:before{background:var(--volt);box-shadow:0 2px 8px rgba(255,212,71,.65)}
+.kbd{margin-top:14px;font-size:14px;color:var(--chalk-3)}
+
+/* ---------- segments ---------- */
+.seg{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
+.seg button{min-height:44px;padding:10px 16px 9px;border-radius:2px;border:1px solid var(--rule-2);background:none;color:var(--chalk-2);font:400 14px/1 var(--disp);letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+.seg button:hover{color:var(--chalk);border-color:var(--chalk-3)}
+.seg button[aria-selected=true]{background:var(--volt);border-color:var(--volt);color:var(--volt-ink)}
+.pdesc{min-height:3.2em}
+
+/* ---------- changes ---------- */
+.diff{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;margin-top:40px}
+.diff h3 .num{font-size:26px;margin-left:10px;color:var(--volt)}
+.diff .minus h3 .num{color:var(--red)}
+
+/* ---------- sideboard ---------- */
+.mu{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;margin-top:34px}
+.mu h4{margin-bottom:4px}
+.mu .io{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.mu .cardgrid{margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:20px 14px}
+.mu .plan p{margin:0 0 14px;color:var(--chalk-2)}
+.mu .plan p:first-child{color:var(--chalk);font-size:18px}
+.sum{display:flex;align-items:baseline;gap:6px;margin-top:6px}
+.sum .num{font-size:28px}
+.sum.in .num{color:var(--volt)}
+.sum.out .num{color:var(--red)}
+
+/* ---------- deck ---------- */
+.dhead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px}
+.dtools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dtools .msg{font-size:14px;color:var(--chalk-3);min-width:12ch}
+.dgroup{margin-top:52px}
+.dgroup h3{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+.dgroup h3 .num{font-size:22px;color:var(--volt)}
+footer{margin-top:140px;padding:32px 0 60px;border-top:1px solid var(--rule-2);font-size:14px;color:var(--chalk-3);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+footer h4{margin-bottom:8px}
+footer p{margin:0}
+
+/* ---------- zoom ---------- */
+.zoom{position:fixed;left:0;top:0;z-index:80;width:300px;pointer-events:none;opacity:0;transition:opacity .15s}
+.zoom.show{opacity:1}
+.zoom img{display:block;width:100%;border-radius:4.6%/3.4%;box-shadow:0 30px 60px -20px #000,0 0 0 1px rgba(0,0,0,.4)}
+.zoom.center{inset:0;width:auto;display:grid;place-items:center;background:rgba(4,14,27,.84);pointer-events:auto}
+.zoom.center img{width:min(78vw,380px)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1100px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:72px}
+  .hero .plant{max-width:700px}
+  .phases{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}
+  .phases:before{display:none}
+  .finders{grid-template-columns:1fr}
+  .colour{grid-template-columns:1fr}
+  .mu{grid-template-columns:1fr}
+}
+@media (max-width:1000px){
+  :root{--rail:0px}
+  .rail{width:272px;z-index:50;transform:translateX(-100%);transition:transform .35s var(--ease);box-shadow:none}
+  body.rail-open .rail{transform:none;box-shadow:24px 0 60px -20px #000}
+  .topbar{display:flex;align-items:center;gap:12px;position:fixed;inset:0 0 auto 0;z-index:45;height:56px;padding:0 6px 0 16px;background:var(--ink-0);border-bottom:1px solid var(--rule)}
+  .topbar a{font:400 19px/1 var(--disp);letter-spacing:.04em;text-transform:uppercase;color:var(--chalk);text-decoration:none}
+  .topbar span{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:400 12px/1 var(--disp);letter-spacing:.12em;text-transform:uppercase;color:var(--volt)}
+  .topbar .btn{border:0;background:none}
+  main{padding-top:56px}
+  section{scroll-margin-top:56px}
+  .scrim{position:fixed;inset:0;z-index:48;background:rgba(4,14,27,.6)}
+  body.rail-open .scrim{display:block}
+}
+@media (max-width:820px){
+  body{font-size:16px}
+  section{padding-top:92px}
+  .pick{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr;gap:20px}
+  .diff{grid-template-columns:1fr}
+  .tips{grid-template-columns:1fr}
+  .hand{grid-template-columns:repeat(4,minmax(0,1fr))}
+  footer{grid-template-columns:1fr}
+  .cap p{font-size:17px}
+}
+@media (max-width:560px){
+  .phases{grid-template-columns:1fr}
+  .cardgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 16px}
+  .cardgrid.dense{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .mu .io{grid-template-columns:1fr}
+  .mu .cardgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .frow{grid-template-columns:76px 1fr;gap:16px}
+  .tblock{grid-template-columns:repeat(2,auto)}
+  .tblock div{border-right:1px solid var(--rule)!important;border-bottom:1px solid var(--rule)!important}
+  .tblock div:nth-child(2n){border-right:0!important}
+  .meter .status{font-size:14.5px}
+  .hud{gap:6px 22px}
+  .rd .num{font-size:24px}
+  .ticks{flex-basis:100%;margin-left:0}
+}
+</style>
+</head>
+<body>
+<!--
+THESIS: FlickerTron is a machine. The three Urza lands are a power plant and every line is a circuit you watch run, card by card, with the current (mana) metered. Refuses the stock dark deck site (boxed panels + one accent) and the prose guide.
+OWN-WORLD: Cyanotype blueprint. Prussian-blue drenched ground with a 24/120px drafting grid, white linework, ISO 3098 technical lettering (osifont) over Archivo; one live-current yellow for powered/current state only, redline for the opponent and cuts; dashed zone outlines, ruler-ticked sheet edges, leader-line annotations. Real cards are the only imagery and lie flat on the sheet.
+STORY: The reader sees Tron make 7 (13 with three Towers), learns how to find it and what to keep, watches the engine and the owner's infinite run, then sideboards and copies the 75.
+FIRST VIEWPORT: Left ~45%: FLICKER / TRON title, one-sentence lede, primary "Run the infinite" (live yellow) and "Draw a hand", drawing title block with the list's facts. Right ~55%: power-plant schematic: Mine, Power Plant, Tower cards wired to a bus and a metered mana readout; lands and Tower count are live switches. Rail on the left.
+FORM: user-pinned "Urza's Machine" (beats the roll, seed key 9ad00c7f). Raises: leader-line annotations pinned to parts (tensegrity column); state as a mark as well as a hue (cutting bench).
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5z"/></symbol>
+ <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+ <symbol id="i-prev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+ <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+ <symbol id="i-restart" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></symbol>
+ <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 7h3.5c4 0 6 10 10 10H21M3 17h3.5c1.6 0 2.8-1.6 3.8-3.6M13.7 9.6C14.7 8 15.6 7 17 7h4M18 4l3 3-3 3M18 14l3 3-3 3"/></symbol>
+ <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="1"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></symbol>
+ <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+ <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></symbol>
+ <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+ <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+ <symbol id="i-node" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M2 12h6M16 12h6"/></symbol>
+</svg>
+
+<div class="topbar"><a href="#top">FlickerTron</a><span id="tbSec" aria-hidden="true"></span><button class="btn ibtn" id="railBtn" aria-label="Open sections" aria-expanded="false" aria-controls="rail"><svg class="i"><use href="#i-menu"/></svg></button></div>
+<div class="scrim" id="scrim"></div>
+<aside class="rail" id="rail" aria-label="Sections">
+ <a class="crest" href="#top">
+  <svg viewBox="0 0 44 44" aria-hidden="true"><path d="M22 6 39 36H5Z" fill="none" stroke="#eef5ff" stroke-width="1.6"/><circle cx="22" cy="22" r="17" fill="none" stroke="#5d7ea8" stroke-width="1" stroke-dasharray="2 3"/><circle cx="22" cy="6" r="3.6" fill="#ffd447"/><circle cx="39" cy="36" r="3.6" fill="#ffd447"/><circle cx="5" cy="36" r="3.6" fill="#ffd447"/></svg>
+  <span><b>FlickerTron</b><span>Pauper · visual primer</span></span>
+ </a>
+ <nav>
+  <div class="wire"><div class="current" id="railCurrent"></div></div>
+  <ol id="railList">
+   <li><a href="#top"><i class="lamp"></i>Power plant</a></li>
+   <li><a href="#plan"><i class="lamp"></i>Game plan</a></li>
+   <li><a href="#tron"><i class="lamp"></i>Finding Tron</a></li>
+   <li><a href="#hand"><i class="lamp"></i>Sample hand</a></li>
+   <li><a href="#lines"><i class="lamp"></i>Lines</a></li>
+   <li><a href="#roles"><i class="lamp"></i>Card roles</a></li>
+   <li><a href="#changes"><i class="lamp"></i>vs PauperBrews</a></li>
+   <li><a href="#side"><i class="lamp"></i>Sideboard</a></li>
+   <li><a href="#deck"><i class="lamp"></i>The 75</a></li>
+  </ol>
+ </nav>
+ <div class="foot">
+  <a href="https://moxfield.com/decks/M8o2H-CwzkGl7EKcMV7A3A" target="_blank" rel="noopener"><svg class="i"><use href="#i-out"/></svg>List on Moxfield</a>
+  <a href="https://www.pauperbrews.com/2025/06/flicker-tron-pauper-deck-guide.html" target="_blank" rel="noopener"><svg class="i"><use href="#i-out"/></svg>PauperBrews guide</a>
+  <a href="https://naiikaa.github.io/RowanCEDH/"><svg class="i"><use href="#i-out"/></svg>Rowan cEDH primer</a>
+ </div>
+</aside>
+
+<main id="main">
+<div class="wrap">
+
+ <header class="hero" id="top">
+  <div>
+   <h1>Flicker<span>Tron</span></h1>
+   <p class="lede">Assemble the three Urza lands, then blink <span class="mention" data-card="Mnemonic Wall" tabindex="0">Mnemonic Wall</span> with <span class="mention" data-card="Ghostly Flicker" tabindex="0">Ghostly Flicker</span> until the opponent runs out of cards, turns or life. Every line on this page plays out with the real cards.</p>
+   <div class="cta">
+    <a class="btn live" href="#lines" data-scene="infinite"><svg class="i"><use href="#i-bolt"/></svg>Run the infinite</a>
+    <a class="btn" href="#hand"><svg class="i"><use href="#i-shuffle"/></svg>Draw a hand</a>
+   </div>
+   <dl class="tblock">
+    <div><dt>Deck</dt><dd>Teachings Tron</dd></div>
+    <div><dt>Format</dt><dd>Pauper</dd></div>
+    <div><dt>Pilot</dt><dd>hannnes23</dd></div>
+    <div><dt>Cards</dt><dd>60 + 15</dd></div>
+    <div><dt>Lands</dt><dd>19</dd></div>
+    <div><dt>List date</dt><dd id="listDate">2026-11-13</dd></div>
+   </dl>
+  </div>
+
+  <div class="plant" id="plant" aria-label="Tron mana calculator">
+   <div class="board">
+    <svg class="wires" viewBox="0 0 640 380" aria-hidden="true">
+     <path class="w" id="wMine" d="M115 266V322H320"/>
+     <path class="w" id="wPP" d="M320 266V322"/>
+     <path class="w" id="wTower" d="M525 266V322H320"/>
+     <path class="w" id="wBus" d="M320 322V380"/>
+     <path class="flow" id="fMine" d="M115 266V322H320"/>
+     <path class="flow" id="fPP" d="M320 266V322"/>
+     <path class="flow" id="fTower" d="M525 266V322H320"/>
+     <path class="flow" id="fBus" d="M320 322V380"/>
+     <circle class="node" id="nBus" cx="320" cy="322" r="6"/>
+     <text class="out" id="oMine" x="127" y="304">+0</text>
+     <text class="out" id="oPP" x="332" y="304">+0</text>
+     <text class="out" id="oTower" x="537" y="304">+0</text>
+    </svg>
+    <button class="land off" data-l="mine" aria-pressed="false" aria-label="Urza's Mine in play" data-card="Urza's Mine"><img alt="" src="assets/cards/normal-08dea8f6-bd32-44a3-bec4-93a5607819df.jpg"></button>
+    <button class="land off" data-l="pp" aria-pressed="false" aria-label="Urza's Power Plant in play" data-card="Urza's Power Plant"><img alt="" src="assets/cards/normal-54445d1f-5426-47e9-9e02-0274cea7174f.jpg"></button>
+    <button class="land off" data-l="tower" aria-pressed="false" aria-label="Urza's Tower in play" data-card="Urza's Tower"><img class="ghost" data-g="2" alt="" src="assets/cards/normal-9e369f3f-354b-42bf-9b2f-286912730c6c.jpg"><img class="ghost" data-g="1" alt="" src="assets/cards/normal-9e369f3f-354b-42bf-9b2f-286912730c6c.jpg"><img alt="" src="assets/cards/normal-9e369f3f-354b-42bf-9b2f-286912730c6c.jpg"></button>
+   </div>
+   <div class="meter cold" id="meter">
+    <div class="read" aria-live="polite"><span class="num" id="mTotal">0</span><span class="unit">mana</span></div>
+    <div class="eq" id="mEq">no Urza lands</div>
+    <div class="towers" role="group" aria-label="Towers in play"><span>Towers</span><button data-t="1" aria-pressed="false">×1</button><button data-t="2" aria-pressed="false">×2</button><button data-t="3" aria-pressed="false">×3</button></div>
+    <div class="status" id="mStatus">Tap a land to put it into play.</div>
+   </div>
+  </div>
+ </header>
+
+ <section id="plan">
+  <div class="head"><h2>The game plan</h2></div>
+  <p class="lede">A control deck that ramps into colourless mana and spends it recasting the same handful of spells. It doesn't race. It survives until <b>Tron</b> is online, then grinds with blinks and recursion until a win condition sticks.</p>
+  <div class="phases" id="phases"></div>
+  <div class="tips">
+   <div><h3>Piloting notes</h3><span class="src">From the <a href="https://www.pauperbrews.com/2025/06/flicker-tron-pauper-deck-guide.html" target="_blank" rel="noopener">PauperBrews guide</a>, checked against this 75.</span></div>
+   <ul>
+    <li><svg class="i"><use href="#i-node"/></svg><span>Mulligan aggressively for Tron. Keep three pieces, or two plus <span class="mention" data-card="Expedition Map" tabindex="0">Expedition Map</span> or <span class="mention" data-card="Crop Rotation" tabindex="0">Crop Rotation</span>.</span></li>
+    <li><svg class="i"><use href="#i-node"/></svg><span>Against land destruction like <span class="mention" data-card="Cleansing Wildfire" tabindex="0">Cleansing Wildfire</span>, answer at instant speed with Crop Rotation: sacrifice the targeted land and fetch a replacement.</span></li>
+    <li><svg class="i"><use href="#i-node"/></svg><span>The base loop: Ghostly Flicker on a Wall and a <span class="mention" data-card="Prophetic Prism" tabindex="0">Prophetic Prism</span> returns the Flicker and draws a card. With two Walls, it returns the Flicker plus any other instant or sorcery.</span></li>
+    <li><svg class="i"><use href="#i-node"/></svg><span>Protect <span class="mention" data-card="Murmuring Mystic" tabindex="0">Murmuring Mystic</span> from exile removal like <span class="mention" data-card="Journey to Nowhere" tabindex="0">Journey to Nowhere</span>. Pulse of Murasa and Call Damage Control only rebuy creatures from the graveyard.</span></li>
+    <li><svg class="i"><use href="#i-node"/></svg><span><span class="mention" data-card="Breath Weapon" tabindex="0">Breath Weapon</span> deals 2 to <i>each</i> non-Dragon creature, your 1/1 Birds and Mulldrifter included. Mystic (1/5), the Walls (0/4) and Stonehorn (1/4) survive it, so cast it before you start making Birds.</span></li>
+   </ul>
+  </div>
+ </section>
+
+ <section id="tron">
+  <div class="head"><h2>Finding Tron</h2></div>
+  <p class="lede">Twelve Urza lands, and the cards that find, protect or rebuy them. Every piece taps for one <img class="ms" src="assets/symbols/C.svg" alt="{C}"> on its own. All three together make seven.</p>
+  <div class="finders" id="finders"></div>
+  <div class="colour">
+   <div>
+    <h3>Colour from colourless</h3>
+    <p class="lede">Tron makes only <img class="ms" src="assets/symbols/C.svg" alt="{C}">, and the deck casts spells in all five colours. These turn colourless mana into coloured mana.</p>
+    <table class="spec" id="filters"></table>
+   </div>
+   <div>
+    <h3>What each splash is for</h3>
+    <p class="lede">Blue is the base. The other colours come in through the filters above and a few dual-purpose lands.</p>
+    <div class="pips" id="pips"></div>
+   </div>
+  </div>
+ </section>
+
+ <section id="hand">
+  <div class="head"><h2>Draw a sample hand</h2></div>
+  <p class="lede">Shuffle the 60 and draw seven. The keep rule is the PauperBrews one: <b>all three Tron pieces, or two plus Expedition Map or Crop Rotation</b>. Take a mulligan and you draw seven new cards, then tap the ones to put on the bottom.</p>
+  <div class="hbar">
+   <div class="btns">
+    <button class="btn live" id="shDraw"><svg class="i"><use href="#i-shuffle"/></svg>Draw 7</button>
+    <button class="btn" id="shMull" disabled>Mulligan</button>
+   </div>
+   <div class="lamps" id="shLamps"><span data-t="Urza's Mine"><i></i>Mine</span><span data-t="Urza's Power Plant"><i></i>Power Plant</span><span data-t="Urza's Tower"><i></i>Tower</span></div>
+   <div class="tally"><div id="shFind"><span class="num">0</span><span class="unit">finders</span></div><div id="shLands"><span class="num">0</span><span class="unit">lands</span></div></div>
+   <div class="verdict" id="shVerdict"><svg class="i"><use href="#i-node"/></svg><span>Draw a hand to check it against the keep rule.</span></div>
+  </div>
+  <div class="hand" id="shRow"></div>
+  <p class="odds" id="shOdds"></p>
+ </section>
+
+ <section id="lines">
+  <div class="head"><h2>Every line, played out</h2></div>
+  <p class="lede">Pick a line and step through it. <b>Space</b> plays or pauses, <b>← / →</b> step. Sources: <span class="tag owner">Owner</span> the deck's pilot · <span class="tag pb">PauperBrews</span> the guide · <span class="tag derived">Derived</span> worked out from the cards' rules text.</p>
+  <div class="pick" id="pick"></div>
+  <div class="chead"><h3 id="ctitle"></h3><div class="tags" id="csrc"></div></div>
+  <div class="facts"><div><h4>Requires</h4><ul id="creq"></ul></div><div><h4>Result</h4><ul id="cres"></ul></div><div><h4>Find it with</h4><p id="cfind"></p></div></div>
+  <div class="hud" id="hud" aria-live="polite"></div>
+  <div class="stage-wrap" id="stageWrap"><div class="stage" id="stage"></div></div>
+  <div class="cap"><div class="plate" id="plate">Step 1</div><p id="caption" aria-live="polite"></p></div>
+  <div class="ctrl">
+   <button class="btn ibtn" id="cRestart" aria-label="Restart"><svg class="i"><use href="#i-restart"/></svg></button>
+   <button class="btn ibtn" id="cPrev" aria-label="Previous step"><svg class="i"><use href="#i-prev"/></svg></button>
+   <button class="btn live" id="cPlay"><svg class="i"><use href="#i-play"/></svg><span>Play</span></button>
+   <button class="btn ibtn" id="cNext" aria-label="Next step"><svg class="i"><use href="#i-next"/></svg></button>
+   <select id="cSpeed" aria-label="Speed"><option value=".6">0.6×</option><option value="1" selected>1×</option><option value="1.6">1.6×</option><option value="2.4">2.4×</option></select>
+   <div class="ticks" id="ticks"></div>
+  </div>
+ </section>
+
+ <section id="roles">
+  <div class="head"><h2>Card roles</h2></div>
+  <p class="lede">The 60 by job. Counts are copies in the main deck.</p>
+  <div class="seg" id="rtabs" role="tablist" aria-label="Card roles"></div>
+  <p class="lede pdesc" id="rdesc"></p>
+  <div class="cardgrid" id="rgrid" role="tabpanel"></div>
+ </section>
+
+ <section id="changes">
+  <div class="head"><h2>This list vs PauperBrews</h2></div>
+  <p class="lede">The engine is the same: Tron, Walls, Ghostly Flicker, Mulldrifter and Mystic. Against the <a href="https://www.pauperbrews.com/2025/06/flicker-tron-pauper-deck-guide.html" target="_blank" rel="noopener">PauperBrews list</a>, this one trades three Energy Refractors and the colour lands for cheaper fixing that does something else too, moves Stonehorn into the main, and adds Rolling Thunder as a finisher.</p>
+  <div class="diff" id="diff"></div>
+ </section>
+
+ <section id="side">
+  <div class="head"><h2>Sideboard guide</h2></div>
+  <p class="lede">Plans for this 15, adapted from the PauperBrews matchup notes and the cards' text. <span class="tag derived">Derived</span> Treat them as a starting point and adjust to what your opponents actually play.</p>
+  <div class="seg" id="mtabs" role="tablist" aria-label="Matchups"></div>
+  <div class="mu" id="mu" role="tabpanel"></div>
+  <h3 style="margin-top:88px">The 15</h3>
+  <div class="cardgrid" id="sgrid"></div>
+ </section>
+
+ <section id="deck">
+  <div class="head dhead"><h2>The 75</h2>
+   <div class="dtools">
+    <button class="btn live" id="copyList"><svg class="i"><use href="#i-copy"/></svg>Copy list</button>
+    <a class="btn" href="https://moxfield.com/decks/M8o2H-CwzkGl7EKcMV7A3A" target="_blank" rel="noopener"><svg class="i"><use href="#i-out"/></svg>Moxfield</a>
+    <span class="msg" id="copyMsg" aria-live="polite"></span>
+   </div>
+  </div>
+  <div id="decklist"></div>
+ </section>
+
+ <footer>
+  <div><h4>Deck</h4><p>“Teachings Tron” by hannnes23 on <a href="https://moxfield.com/decks/M8o2H-CwzkGl7EKcMV7A3A" target="_blank" rel="noopener">Moxfield</a>. Strategy notes adapted from <a href="https://www.pauperbrews.com/2025/06/flicker-tron-pauper-deck-guide.html" target="_blank" rel="noopener">PauperBrews</a> (David Royale).</p></div>
+  <div><h4>Cards</h4><p>Card images, rules text and mana symbols from <a href="https://scryfall.com" target="_blank" rel="noopener">Scryfall</a>. Magic: The Gathering is © Wizards of the Coast; this is unofficial fan content.</p></div>
+  <div><h4>Also</h4><p><a href="https://naiikaa.github.io/RowanCEDH/">Rowan, Scion of War: visual cEDH primer</a>. Lettering: osifont (ISO 3098) and Archivo.</p></div>
+ </footer>
+</div>
+</main>
+
+<div class="zoom" id="zoom" aria-hidden="true"></div>
+<script src="assets/data.js"></script>
+<script src="assets/lines.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
