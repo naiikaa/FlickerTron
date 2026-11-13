@@ -151,7 +151,7 @@ let shownTotal = 0, countRaf = 0, wasTron = false;
     const a = Math.PI * (1 - v / 13), c = Math.cos(a), s = Math.sin(a), maj = v in MAJ, r2 = maj ? 124 : 132;
     const P = (r, dy = 0) => `x="${(170 + r * c).toFixed(1)}" y="${(170 - r * s + dy).toFixed(1)}"`;
     h += `<line class="tk${maj ? ' maj' : ''}" x1="${(170 + 140 * c).toFixed(1)}" y1="${(170 - 140 * s).toFixed(1)}" x2="${(170 + r2 * c).toFixed(1)}" y2="${(170 - r2 * s).toFixed(1)}"/>`;
-    if (maj) h += `<text ${P(106, 5)}>${v}</text>` + (MAJ[v] ? `<text class="sub" ${v === 13 ? P(100, 22) : P(86, 4)}>${MAJ[v]}</text>` : '');
+    if (maj) h += `<text ${P(106, 5)}>${v}</text>` + (MAJ[v] ? `<text class="sub" ${v === 13 ? P(100, 22) : P(154, 0)}>${MAJ[v]}</text>` : '');
   }
   $('#gTicks').innerHTML = h;
 })();
@@ -389,7 +389,7 @@ function buildStage() {
   stage.style.width = L.w + 'px'; stage.style.height = L.h + 'px';
   for (const [k, zd] of Object.entries(L.z)) {
     const d = document.createElement('div');
-    d.className = 'zn ' + k + (k === 'opp' && !scene.opp && !scene.steps.some(s => s.opp) ? ' idle' : '');
+    d.className = 'zn z-' + k + (k === 'opp' && !scene.opp && !scene.steps.some(s => s.opp) ? ' idle' : '');
     Object.assign(d.style, { left: zd.x + 'px', top: zd.y + 'px', width: zd.w + 'px', height: zd.h + 'px' });
     d.innerHTML = `<b>${zd.label}</b>` + (k === 'opp' ? '<span class="ost" id="ost"></span>' : '');
     stage.appendChild(d);
@@ -407,7 +407,7 @@ function fitStage() {
   const want = stageWrap.clientWidth < 700 ? LAYOUTS.tall : LAYOUTS.wide;
   if (want !== L) { L = want; if (scene) { buildStage(); render(cur, true); } return; }
   const k = stageWrap.clientWidth / L.w;
-  stage.style.transform = `scale(${k})`; stageWrap.style.height = L.h * k + 12 + 'px';
+  stage.style.transform = `scale(${k})`; stageWrap.style.height = L.h * k + 24 + 'px';
 }
 function render(i, instant) {
   cur = i; const S = states[i], st = S.st;
