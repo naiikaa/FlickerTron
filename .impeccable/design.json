@@ -1,0 +1,526 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T18:15:01.115054+00:00",
+  "title": "Design System: FlickerTron",
+  "extensions": {
+    "colorMeta": {
+      "ink-0": {
+        "role": "neutral",
+        "displayName": "Prussian Ink Deep",
+        "canonical": "#032447",
+        "tonalRamp": [
+          "oklch(15% 0.09 252)",
+          "oklch(25% 0.09 252)",
+          "oklch(35% 0.09 252)",
+          "oklch(45% 0.09 252)",
+          "oklch(58% 0.09 252)",
+          "oklch(70% 0.09 252)",
+          "oklch(82% 0.09 252)",
+          "oklch(95% 0.09 252)"
+        ]
+      },
+      "ink-1": {
+        "role": "neutral",
+        "displayName": "Prussian Sheet",
+        "canonical": "#06335f",
+        "tonalRamp": [
+          "oklch(15% 0.09 252)",
+          "oklch(25% 0.09 252)",
+          "oklch(35% 0.09 252)",
+          "oklch(45% 0.09 252)",
+          "oklch(58% 0.09 252)",
+          "oklch(70% 0.09 252)",
+          "oklch(82% 0.09 252)",
+          "oklch(95% 0.09 252)"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Prussian Fill",
+        "canonical": "#0b3f72",
+        "tonalRamp": [
+          "oklch(15% 0.1 252)",
+          "oklch(25% 0.1 252)",
+          "oklch(35% 0.1 252)",
+          "oklch(45% 0.1 252)",
+          "oklch(58% 0.1 252)",
+          "oklch(70% 0.1 252)",
+          "oklch(82% 0.1 252)",
+          "oklch(95% 0.1 252)"
+        ]
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Unpowered Track",
+        "canonical": "#17508a",
+        "tonalRamp": [
+          "oklch(15% 0.1 252)",
+          "oklch(25% 0.1 252)",
+          "oklch(35% 0.1 252)",
+          "oklch(45% 0.1 252)",
+          "oklch(58% 0.1 252)",
+          "oklch(70% 0.1 252)",
+          "oklch(82% 0.1 252)",
+          "oklch(95% 0.1 252)"
+        ]
+      },
+      "ink-4": {
+        "role": "neutral",
+        "displayName": "Prussian Light",
+        "canonical": "#2a66a6",
+        "tonalRamp": [
+          "oklch(15% 0.11 252)",
+          "oklch(25% 0.11 252)",
+          "oklch(35% 0.11 252)",
+          "oklch(45% 0.11 252)",
+          "oklch(58% 0.11 252)",
+          "oklch(70% 0.11 252)",
+          "oklch(82% 0.11 252)",
+          "oklch(95% 0.11 252)"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk Line",
+        "canonical": "#eef5ff",
+        "tonalRamp": [
+          "oklch(15% 0.03 255)",
+          "oklch(25% 0.03 255)",
+          "oklch(35% 0.03 255)",
+          "oklch(45% 0.03 255)",
+          "oklch(58% 0.03 255)",
+          "oklch(70% 0.03 255)",
+          "oklch(82% 0.03 255)",
+          "oklch(95% 0.03 255)"
+        ]
+      },
+      "chalk-2": {
+        "role": "neutral",
+        "displayName": "Chalk Copy",
+        "canonical": "#b6cdea",
+        "tonalRamp": [
+          "oklch(15% 0.045 255)",
+          "oklch(25% 0.045 255)",
+          "oklch(35% 0.045 255)",
+          "oklch(45% 0.045 255)",
+          "oklch(58% 0.045 255)",
+          "oklch(70% 0.045 255)",
+          "oklch(82% 0.045 255)",
+          "oklch(95% 0.045 255)"
+        ]
+      },
+      "chalk-3": {
+        "role": "neutral",
+        "displayName": "Chalk Label",
+        "canonical": "#8fadd3",
+        "tonalRamp": [
+          "oklch(15% 0.06 255)",
+          "oklch(25% 0.06 255)",
+          "oklch(35% 0.06 255)",
+          "oklch(45% 0.06 255)",
+          "oklch(58% 0.06 255)",
+          "oklch(70% 0.06 255)",
+          "oklch(82% 0.06 255)",
+          "oklch(95% 0.06 255)"
+        ]
+      },
+      "chalk-4": {
+        "role": "neutral",
+        "displayName": "Cold Chalk",
+        "canonical": "#5d7ea8",
+        "tonalRamp": [
+          "oklch(15% 0.07 255)",
+          "oklch(25% 0.07 255)",
+          "oklch(35% 0.07 255)",
+          "oklch(45% 0.07 255)",
+          "oklch(58% 0.07 255)",
+          "oklch(70% 0.07 255)",
+          "oklch(82% 0.07 255)",
+          "oklch(95% 0.07 255)"
+        ]
+      },
+      "arc": {
+        "role": "primary",
+        "displayName": "Arc Light",
+        "canonical": "#7fe7ff",
+        "tonalRamp": [
+          "oklch(15% 0.11 210)",
+          "oklch(25% 0.11 210)",
+          "oklch(35% 0.11 210)",
+          "oklch(45% 0.11 210)",
+          "oklch(58% 0.11 210)",
+          "oklch(70% 0.11 210)",
+          "oklch(82% 0.11 210)",
+          "oklch(95% 0.11 210)"
+        ]
+      },
+      "arc-hot": {
+        "role": "primary",
+        "displayName": "Arc White-Hot",
+        "canonical": "#e8fcff",
+        "tonalRamp": [
+          "oklch(15% 0.11 210)",
+          "oklch(25% 0.11 210)",
+          "oklch(35% 0.11 210)",
+          "oklch(45% 0.11 210)",
+          "oklch(58% 0.11 210)",
+          "oklch(70% 0.11 210)",
+          "oklch(82% 0.11 210)",
+          "oklch(95% 0.11 210)"
+        ]
+      },
+      "arc-ink": {
+        "role": "primary",
+        "displayName": "Arc Ink",
+        "canonical": "#02233a",
+        "tonalRamp": [
+          "oklch(15% 0.11 210)",
+          "oklch(25% 0.11 210)",
+          "oklch(35% 0.11 210)",
+          "oklch(45% 0.11 210)",
+          "oklch(58% 0.11 210)",
+          "oklch(70% 0.11 210)",
+          "oklch(82% 0.11 210)",
+          "oklch(95% 0.11 210)"
+        ]
+      },
+      "volt": {
+        "role": "secondary",
+        "displayName": "Live Volt",
+        "canonical": "#ffd447",
+        "tonalRamp": [
+          "oklch(15% 0.16 92)",
+          "oklch(25% 0.16 92)",
+          "oklch(35% 0.16 92)",
+          "oklch(45% 0.16 92)",
+          "oklch(58% 0.16 92)",
+          "oklch(70% 0.16 92)",
+          "oklch(82% 0.16 92)",
+          "oklch(95% 0.16 92)"
+        ]
+      },
+      "volt-hot": {
+        "role": "secondary",
+        "displayName": "Volt Hot",
+        "canonical": "#fff3bf",
+        "tonalRamp": [
+          "oklch(15% 0.16 92)",
+          "oklch(25% 0.16 92)",
+          "oklch(35% 0.16 92)",
+          "oklch(45% 0.16 92)",
+          "oklch(58% 0.16 92)",
+          "oklch(70% 0.16 92)",
+          "oklch(82% 0.16 92)",
+          "oklch(95% 0.16 92)"
+        ]
+      },
+      "volt-ink": {
+        "role": "secondary",
+        "displayName": "Volt Ink",
+        "canonical": "#1b1404",
+        "tonalRamp": [
+          "oklch(15% 0.16 92)",
+          "oklch(25% 0.16 92)",
+          "oklch(35% 0.16 92)",
+          "oklch(45% 0.16 92)",
+          "oklch(58% 0.16 92)",
+          "oklch(70% 0.16 92)",
+          "oklch(82% 0.16 92)",
+          "oklch(95% 0.16 92)"
+        ]
+      },
+      "red": {
+        "role": "tertiary",
+        "displayName": "Redline",
+        "canonical": "#ff7b67",
+        "tonalRamp": [
+          "oklch(15% 0.16 30)",
+          "oklch(25% 0.16 30)",
+          "oklch(35% 0.16 30)",
+          "oklch(45% 0.16 30)",
+          "oklch(58% 0.16 30)",
+          "oklch(70% 0.16 30)",
+          "oklch(82% 0.16 30)",
+          "oklch(95% 0.16 30)"
+        ]
+      },
+      "rule": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "rgba(208,228,255,.16)"
+      },
+      "rule-2": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "canonical": "rgba(208,228,255,.34)"
+      },
+      "grid-minor": {
+        "role": "neutral",
+        "displayName": "Minor Grid",
+        "canonical": "rgba(150,195,255,.05)"
+      },
+      "grid-major": {
+        "role": "neutral",
+        "displayName": "Major Grid",
+        "canonical": "rgba(150,195,255,.095)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero title only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings under the ruler edge."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sub-headings and line titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Copy, ledes, captions; tabular figures."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Uppercase tracked osifont for nav, buttons, tags, table heads, zone names."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Meter readouts, HUD, tallies, quantities in expanded heavy Archivo."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 10px 20px -10px rgba(0,0,0,.9)",
+        "purpose": "Cards lying on the sheet."
+      },
+      {
+        "name": "card-lift",
+        "value": "0 22px 30px -14px rgba(0,0,0,.95), 0 8px 16px -8px rgba(0,0,0,.9)",
+        "purpose": "Card hover, with translateY(-5px)."
+      },
+      {
+        "name": "arc-lamp",
+        "value": "0 2px 10px 1px rgba(127,231,255,.55)",
+        "purpose": "Current rail lamp; offset glow on state markers only."
+      },
+      {
+        "name": "arc-tick",
+        "value": "0 2px 8px rgba(127,231,255,.65)",
+        "purpose": "Current step tick and lit hand lamps."
+      },
+      {
+        "name": "live-wire",
+        "value": "drop-shadow(0 2px 5px rgba(127,231,255,.55))",
+        "purpose": "Powered schematic wires (filter)."
+      },
+      {
+        "name": "hot-card",
+        "value": "0 12px 26px -6px rgba(127,231,255,.6)",
+        "purpose": "Card acting in the current step, with 2px arc outline."
+      },
+      {
+        "name": "zoom",
+        "value": "0 30px 60px -20px #000, 0 0 0 1px rgba(0,0,0,.4)",
+        "purpose": "Hover card zoom."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "All state and card transitions."
+      },
+      {
+        "name": "needle",
+        "value": "transform .7s var(--ease)",
+        "purpose": "Voltmeter needle sweep."
+      },
+      {
+        "name": "flow",
+        "value": "flow 1.1s linear infinite",
+        "purpose": "Current travelling along live wires; disabled under reduced motion."
+      },
+      {
+        "name": "card-move",
+        "value": "transform calc(.62s / var(--spd)) var(--ease)",
+        "purpose": "Line-player card moves, scaled by playback speed."
+      },
+      {
+        "name": "deal",
+        "value": "deal .55s var(--ease)",
+        "purpose": "Sample-hand deal-in."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "1100px"
+      },
+      {
+        "name": "drawer",
+        "value": "1000px"
+      },
+      {
+        "name": "narrow",
+        "value": "820px"
+      },
+      {
+        "name": "phone",
+        "value": "560px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Live Button",
+      "kind": "button",
+      "refersTo": "button-live",
+      "description": "The single primary action per view, in volt.",
+      "html": "<button class=\"ds-btn ds-btn-live\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\"><path d=\"M13 3 5 13.5h6L10 21l8-10.5h-6z\"/></svg>Run the infinite</button>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:12px 20px;border-radius:2px;border:1px solid var(--rule-2);background:var(--ink-2);color:var(--chalk);font:400 15px/1 var(--disp);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .1s} .ds-btn:hover{border-color:var(--arc);color:var(--arc-hot)} .ds-btn:active{transform:translateY(1px)} .ds-btn:focus-visible{outline:2px solid var(--arc);outline-offset:3px} .ds-btn-live{background:var(--volt);border-color:var(--volt);color:var(--volt-ink)} .ds-btn-live:hover{background:var(--volt-hot);border-color:var(--volt);color:var(--volt-ink)}"
+    },
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default drafted control: ink fill, hairline border, arc on hover.",
+      "html": "<button class=\"ds-btn\">Draw a hand</button>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:12px 20px;border-radius:2px;border:1px solid var(--rule-2);background:var(--ink-2);color:var(--chalk);font:400 15px/1 var(--disp);letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,color .2s,background .2s,transform .1s} .ds-btn:hover{border-color:var(--arc);color:var(--arc-hot)} .ds-btn:active{transform:translateY(1px)} .ds-btn:focus-visible{outline:2px solid var(--arc);outline-offset:3px} "
+    },
+    {
+      "name": "Segments",
+      "kind": "chip",
+      "refersTo": "segment-selected",
+      "description": "Matchup/role selector; selected segment is powered arc.",
+      "html": "<div class=\"ds-seg\"><button aria-selected=\"true\">Affinity</button><button aria-selected=\"false\">Elves</button><button aria-selected=\"false\">Faeries</button></div>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-seg{display:flex;gap:8px;flex-wrap:wrap} .ds-seg button{min-height:44px;padding:10px 16px 9px;border-radius:2px;border:1px solid var(--rule-2);background:none;color:var(--chalk-2);font:400 14px/1 var(--disp);letter-spacing:.09em;text-transform:uppercase;cursor:pointer} .ds-seg button:hover{color:var(--chalk);border-color:var(--chalk-3)} .ds-seg button:focus-visible{outline:2px solid var(--arc);outline-offset:3px} .ds-seg button[aria-selected=true]{background:var(--arc);border-color:var(--arc);color:var(--arc-ink)}"
+    },
+    {
+      "name": "Source Tags",
+      "kind": "chip",
+      "refersTo": "tag-owner",
+      "description": "Line provenance: owner solid, PauperBrews outline, derived dashed.",
+      "html": "<span class=\"ds-tag ds-owner\">Owner</span> <span class=\"ds-tag ds-pb\">PauperBrews</span> <span class=\"ds-tag ds-der\">Derived</span>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-tag{display:inline-block;padding:5px 9px 4px;border-radius:2px;font:400 12px/1.1 var(--disp);letter-spacing:.12em;text-transform:uppercase} .ds-owner{background:var(--chalk);color:var(--ink-0)} .ds-pb{border:1px solid var(--chalk-2);color:var(--chalk)} .ds-der{border:1px dashed var(--chalk-3);color:var(--chalk-3)}"
+    },
+    {
+      "name": "Rail Navigation",
+      "kind": "nav",
+      "refersTo": "rail",
+      "description": "Wired lamp rail; current section lit in arc with offset glow.",
+      "html": "<nav class=\"ds-rail\"><span class=\"ds-wire\"></span><a href=\"#\" class=\"ds-done\"><i></i>Tron</a><a href=\"#\" class=\"ds-on\"><i></i>Engine</a><a href=\"#\"><i></i>Lines</a></nav>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-rail{position:relative;background:var(--ink-0);padding:8px 16px 8px 0;width:248px} .ds-wire{position:absolute;left:33px;top:20px;bottom:20px;width:2px;background:linear-gradient(var(--arc) 50%,var(--ink-3) 50%)} .ds-rail a{position:relative;display:grid;grid-template-columns:68px 1fr;align-items:center;min-height:44px;font:400 15px/1.15 var(--disp);letter-spacing:.07em;text-transform:uppercase;color:var(--chalk-3);text-decoration:none} .ds-rail a:hover{color:var(--chalk)} .ds-rail a:focus-visible{outline:2px solid var(--arc);outline-offset:3px} .ds-rail i{justify-self:center;margin-left:-2px;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--chalk-4);background:var(--ink-0);position:relative} .ds-done i{border-color:var(--arc)} .ds-done i:after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--arc);opacity:.55} .ds-on{color:var(--chalk)!important} .ds-on i{background:var(--arc);border-color:var(--arc);box-shadow:0 2px 10px 1px rgba(127,231,255,.55)}"
+    },
+    {
+      "name": "Speed Select",
+      "kind": "input",
+      "refersTo": "button",
+      "description": "Line-player speed field, styled as a drafted control.",
+      "html": "<select class=\"ds-select\"><option>1×</option><option>2×</option></select>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-select{height:46px;padding:0 12px;border-radius:2px;border:1px solid var(--rule-2);background:var(--ink-2);color:var(--chalk);font:400 14px var(--disp);letter-spacing:.08em} .ds-select:hover{border-color:var(--arc)} .ds-select:focus-visible{outline:2px solid var(--arc);outline-offset:3px}"
+    },
+    {
+      "name": "Step Plates",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "Line-player step type: current, setup, loop, final.",
+      "html": "<span class=\"ds-plate\">Step 4</span> <span class=\"ds-plate ds-setup\">Setup</span> <span class=\"ds-plate ds-loop\">Loop</span> <span class=\"ds-plate ds-final\">Final</span>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-plate{display:inline-block;min-width:92px;padding:9px 12px 8px;border-radius:2px;background:var(--arc);color:var(--arc-ink);font:400 14px/1 var(--disp);letter-spacing:.1em;text-transform:uppercase;text-align:center} .ds-setup{background:var(--ink-3);color:var(--chalk)} .ds-loop{background:none;border:1px dashed var(--arc);color:var(--arc)} .ds-final{background:var(--arc-hot)}"
+    },
+    {
+      "name": "Leader Annotation",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Note pinned by a hairline leader ending in a dot.",
+      "html": "<p class=\"ds-ann\">Finds any Tron piece; cycles late.</p>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-ann{position:relative;padding-left:22px;color:var(--chalk-2);font:400 15.5px/1.6 var(--body)} .ds-ann:before{content:'';position:absolute;left:0;top:.75em;width:14px;height:1px;background:var(--chalk-3)} .ds-ann:after{content:'';position:absolute;left:-3px;top:calc(.75em - 3px);width:7px;height:7px;border-radius:50%;background:var(--chalk-3)}"
+    },
+    {
+      "name": "Revision Block",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Changes list as a drawing revision table; cuts in redline with strikethrough.",
+      "html": "<table class=\"ds-rev\"><tr><td class=\"d\">+1</td><td><b>Mnemonic Wall</b>Second engine piece.</td></tr><tr class=\"cut\"><td class=\"d\">−1</td><td><b>Prohibit</b>Cut for the Wall.</td></tr></table>",
+      "css": ":host{--ink-0:#032447;--ink-1:#06335f;--ink-2:#0b3f72;--ink-3:#17508a;--chalk:#eef5ff;--chalk-2:#b6cdea;--chalk-3:#8fadd3;--chalk-4:#5d7ea8;--rule:rgba(208,228,255,.16);--rule-2:rgba(208,228,255,.34);--volt:#ffd447;--volt-hot:#fff3bf;--volt-ink:#1b1404;--arc:#7fe7ff;--arc-hot:#e8fcff;--arc-ink:#02233a;--red:#ff7b67;--disp:'osifont','Archivo',sans-serif;--body:'Archivo',system-ui,sans-serif;--ease:cubic-bezier(.16,1,.3,1)} .ds-rev{border-collapse:collapse;font:400 15px/1.45 var(--body);width:100%} .ds-rev td{padding:11px 10px 11px 0;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--chalk-2)} .ds-rev td.d{width:52px;font:700 17px/1.2 var(--body);font-stretch:125%;color:var(--chalk)} .ds-rev b{display:block;font:400 15px/1.25 var(--disp);letter-spacing:.06em;text-transform:uppercase;color:var(--chalk)} .ds-rev tr:hover b{color:var(--arc-hot)} .ds-rev .cut td.d{color:var(--red)} .ds-rev .cut b{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1.5px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Urza's Machine",
+    "overview": "**Creative North Star: \"Urza's Machine\"**\n\nThe page is a cyanotype drawing sheet. A Prussian-blue ground carries a two-level drafting grid, white linework and ISO 3098 technical lettering. The deck is drawn as a power plant: the three Tron lands are generators wired to a bus, mana is voltage read off a drafted voltmeter, and every line is a circuit the reader watches run card by card. Light is a material: cyan arc light only appears where current flows.\n\nDensity is that of an engineering drawing. Hairline rules, ruler-ticked sheet edges, dashed zone outlines, title blocks, parts lists and revision blocks do the structural work that boxed panels would do in a stock deck site. The real Scryfall cards are the only imagery; they lie flat on the sheet with a soft drop shadow and never get decorative frames.\n\nRejected: the clean corporate SaaS look and the stock dark deck site of boxed panels with one accent (PRODUCT.md brand commitment). The theme always yields to legibility of card text, costs and steps.",
+    "keyCharacteristics": [
+      "Drenched Prussian-blue ground with a native 24px / 120px drafting grid and faint paper noise.",
+      "osifont technical lettering, always uppercase and tracked, over Archivo body text with tabular figures.",
+      "Three signal hues with fixed meanings: cyan arc = powered/current, yellow volt = the primary action, redline = opponent and cuts.",
+      "Hairline rules and dashed outlines instead of filled panels; 2px corners on every control.",
+      "Leader-line annotations, a drafted voltmeter, parts list and revision block as signature drawing devices."
+    ],
+    "rules": [
+      {
+        "name": "The Current Rule",
+        "body": "Cyan arc means current is flowing or this is the current step. A surface that is not powered, live or selected never takes arc.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Switch Rule",
+        "body": "Volt yellow belongs to the primary action button and the skip link. If a view has two volt buttons, one of them is wrong.",
+        "section": "colors"
+      },
+      {
+        "name": "The Redline Rule",
+        "body": "Red marks the opponent and removals (cuts, mulligans, bottomed cards, sideboard outs), never errors or emphasis.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mark-Plus-Hue Rule",
+        "body": "State is carried by a mark as well as a color: lit lamp vs. hollow ring, solid vs. dashed wire, strikethrough on cuts, check/cross icons on verdicts.",
+        "section": "colors"
+      },
+      {
+        "name": "The Drafted Caps Rule",
+        "body": "osifont is always uppercase, weight 400 and positively tracked. Never bold it, never set it in sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Meter Figures Rule",
+        "body": "Every number that counts something is tabular Archivo at expanded width, never osifont.",
+        "section": "typography"
+      },
+      {
+        "name": "The Native Grid Rule",
+        "body": "The 24/120px drafting grid is the world's paper, not decoration; it stays on every surface and section rulers align to it.",
+        "section": "layout"
+      },
+      {
+        "name": "The Cast Glow Rule",
+        "body": "Arc glow is limited to state markers (lamps, live wires, current tick, hot card) and always offset downward. Never glow text, buttons or containers.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Dashed Outline Rule",
+        "body": "Board zones are dashed rule-2 outlines with the zone name set as a label above the outline, never inside a filled box. The opponent zone alone is a solid redline outline.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** keep the 24px / 120px drafting grid on the ground of every surface.",
+      "**Do** reserve arc for powered or current state, volt for the single primary action and the skip link, red for the opponent and cuts.",
+      "**Do** set every heading and label in uppercase, tracked osifont at weight 400; every count in expanded tabular Archivo.",
+      "**Do** carry state with a mark as well as a hue (lamp fill, solid vs. dashed, strikethrough, icon).",
+      "**Do** attach notes with leader lines and render lists as parts lists and revision blocks.",
+      "**Do** put zone names above dashed outlines.",
+      "**Do** honor `prefers-reduced-motion`: stop flow, deal and needle animation and smooth scroll."
+    ],
+    "donts": [
+      "**Don't** use arc for decoration, hover fills or non-state emphasis.",
+      "**Don't** put volt on secondary buttons, tags or highlights.",
+      "**Don't** wrap content in filled, rounded, shadowed panels; use hairline rules and outlines.",
+      "**Don't** glow anything that is not a state marker, and never glow without the downward offset.",
+      "**Don't** add imagery other than the real cards, and don't frame or tilt them decoratively.",
+      "**Don't** let the theme reduce legibility of card text, costs or steps."
+    ]
+  }
+}
