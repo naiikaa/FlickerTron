@@ -45,7 +45,7 @@ const SCENES = [
     { c: 'They cast Cleansing Wildfire targeting your Urza\'s Tower.', mv: [['cw', 'stack']], hot: ['cw'], bd: { tower: 'Target' }, opp: 'Casts Cleansing Wildfire' },
     { c: 'In response, cast Crop Rotation with {G} from the Forest, sacrificing the targeted Tower as the additional cost.', tap: ['forest'], mv: [['tower', 'gy'], ['crop', 'stack']], hud: { mana: 2 }, hot: ['crop'] },
     { c: 'Crop Rotation resolves: search for another Urza\'s Tower and put it onto the battlefield, untapped.', mv: [['crop', 'gy'], ['tower2', 'lands']], hud: { mana: 7 }, hot: ['tower2'], bd: { tower2: '+3' } },
-    { k: 'final', c: 'Cleansing Wildfire has no legal target left, so it does nothing: no land destroyed, no basic for them, no card drawn.', mv: [['cw', 'opp']], bd: { cw: 'No target' }, opp: 'Wildfire does nothing' }
+    { k: 'final', c: 'Cleansing Wildfire has no legal target left, so it does nothing: no land destroyed and no card drawn for them.', mv: [['cw', 'opp']], bd: { cw: 'No target' }, opp: 'Wildfire does nothing' }
   ]
 },
 {
@@ -91,7 +91,7 @@ const SCENES = [
 {
   id: 'drifter', group: 'Engine', title: 'Evoke Mulldrifter + Ephemerate', src: ['derived'],
   pieces: ['Mulldrifter', 'Ephemerate', 'Prophetic Prism'],
-  sub: 'Five mana: six cards and a 2/2 flyer.',
+  sub: 'Four mana: six cards and a 2/2 flyer.',
   req: ['Mulldrifter and Ephemerate', '{2}{U} + {W}: the Prism makes the white'],
   res: ['Draw 2 + 2 now, 2 more on rebound', 'Mulldrifter stays: the evoke sacrifice can\'t find the blinked one'],
   find: 'Mystical Teachings fetches Ephemerate. Any filter (Prism, Refractor, Boulder, Ornament, Pylons) makes {W}.',
@@ -103,11 +103,11 @@ const SCENES = [
     { k: 'setup', c: 'Mulldrifter and Ephemerate in hand, Prophetic Prism in play.' },
     { c: 'Cast Mulldrifter for its evoke cost, {2}{U}.', tap: ['isl', 'mine'], mv: [['drift', 'stack']], hud: { mana: 5 } },
     { c: 'It enters and two triggers go on the stack: draw two, and sacrifice it (evoke).', mv: [['drift', 'bf']], bd: { drift: 'Draw 2 · Sacrifice' } },
-    { c: 'Holding priority, cast Ephemerate on it. Pay {1} into the Prism for the {W}.', tap: ['prism', 'pp'], mv: [['eph', 'stack']], hud: { mana: 3 }, hot: ['drift'] },
+    { c: 'Holding priority, cast Ephemerate on it. Pay {1} into the Prism for the {W}.', tap: ['prism', 'pp'], mv: [['eph', 'stack']], hud: { mana: 4 }, hot: ['drift'] },
     { c: 'Ephemerate resolves: Mulldrifter is exiled, and Ephemerate goes to exile with rebound…', mv: [['drift', 'ex'], ['eph', 'ex']] },
     { c: '…and Mulldrifter returns as a new object. Its new enter trigger draws two more. The old sacrifice trigger can\'t find it.', mv: [['drift', 'bf']], hot: ['drift'], bd: { drift: 'Draw 2', eph: 'Rebound' } },
     { c: 'Both draw triggers resolve: four cards, and Mulldrifter stays.', mv: [['d1', 'hand'], ['d2', 'hand'], ['d3', 'hand'], ['d4', 'hand']], hud: { drawn: 4 } },
-    { k: 'final', c: 'Next upkeep, cast Ephemerate from exile for free. Mulldrifter blinks again and draws two: six cards for five mana.', mv: [['eph', 'gy'], ['d5', 'hand'], ['d6', 'hand']], hud: { drawn: 6 }, hot: ['drift'], bd: { drift: 'Draw 2' } }
+    { k: 'final', c: 'Next upkeep, cast Ephemerate from exile for free. Mulldrifter blinks again and draws two: six cards for four mana.', mv: [['eph', 'gy'], ['d5', 'hand'], ['d6', 'hand']], hud: { drawn: 6 }, hot: ['drift'], bd: { drift: 'Draw 2' } }
   ]
 },
 {

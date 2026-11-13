@@ -187,7 +187,7 @@ function renderPlant() {
   let s;
   if (!any) s = 'Tap a land to put it into play.';
   else if (!r.tron) s = 'Without all three pieces, every Urza land taps for one colourless.';
-  else if (PLANT.tower === 1) s = 'Tron is online: seven mana from three lands, usually on turn three.';
+  else if (PLANT.tower === 1) s = 'Tron is online: seven mana from three lands, on turn three at the earliest.';
   else if (PLANT.tower === 2) s = 'A second Tower adds three more: ten mana.';
   else s = 'Three Towers: thirteen mana, and Unwind untapping them is worth nine. That powers <a href="#lines" data-scene="infinite">the infinite</a>.';
   $('#mStatus').innerHTML = s;
